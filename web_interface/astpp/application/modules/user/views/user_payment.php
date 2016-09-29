@@ -79,7 +79,7 @@ return false;
 				  <label style=" float: left;">Enter Recharge Amount In <?= $from_currency?>:</label>
 		  </div> 
 		  <div class='col-md-5 margin-t-10'>
-				  <input type="text" name="gross_amount" id="gross_amount" value="0" class="form-control">
+				  <input type="text" name="gross_amount" id="gross_amount" value="0" class="form-control" maxlength="5">
 		  </div> 
           <div class='col-md-7 no-padding'>	  
 				  <label style=" float: left;">Tax Rate: (<?= $paypal_tax;?>%):</label> 	 
