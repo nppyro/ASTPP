@@ -1493,7 +1493,7 @@ class User extends MX_Controller {
         $count_res = $this->user_model->getuser_cdrs_list(false, "", "");
         $count_all = (array) $count_res->first_row();
         ob_clean();
-        $customer_array[] = array("Date", "CallerID", "Called Number","Code", "Destination", "Duration", "Debit($currency)", "Disposition", "Call Type");
+        $customer_array[] = array("Date", "CallerID", "Called Number", "Destination", "Duration", "Debit($currency)", "Disposition", "Call Type");
         if ($count_all['count'] > 0) {
             $query = $this->user_model->getuser_cdrs_list(true, '', '', true);
             $currency_info = $this->common->get_currency_info();
@@ -1506,7 +1506,6 @@ class User extends MX_Controller {
                     $this->common->convert_GMT_to('', '', $value['callstart']),
                     $value['callerid'],
                     $value['callednum'],
-                    filter_var($value['pattern'], FILTER_SANITIZE_NUMBER_INT),
                     $value['notes'],
                     $duration,
                     $this->common->calculate_currency_manually($currency_info, $value['debit'],false),
@@ -1520,7 +1519,6 @@ class User extends MX_Controller {
                 "",
                 "",
                 "",
-		"",
                 $duration,
                 $this->common->calculate_currency_manually($currency_info, $count_all['total_debit']),
                 "",
