@@ -1520,7 +1520,7 @@ class User extends MX_Controller {
                 "",
                 "",
                 $duration,
-                $this->common->calculate_currency_manually($currency_info, $count_all['total_debit']),
+                $this->common->calculate_currency_manually($currency_info, $count_all['total_debit'],false,false),
                 "",
                 ""
             );
