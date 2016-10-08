@@ -1089,6 +1089,7 @@ class User extends MX_Controller {
         if($accountinfo['reseller_id'] > 0){
 	  $this->db->select('dids.id, dids.number, reseller_pricing.setup, reseller_pricing.monthlycost');
 	  $this->db->where('dids.accountid',0);
+	  $this->db->where('dids.parent_id',$accountinfo['reseller_id']);
 	  $this->db->where('reseller_pricing.note','dids.number',false);
 	  $this->db->where('reseller_pricing.reseller_id',$accountinfo['reseller_id']);
 	  $this->db->from('dids,reseller_pricing');

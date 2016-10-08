@@ -207,7 +207,7 @@ class DID extends MX_Controller {
 	    $drp_list=array();
 	    $accountinfo = $this->session->userdata('accountinfo');
 	    if($accountinfo['reseller_id'] > 0){
-	      $dids_array=$this->db->query("SELECT a.id AS id,a.number as number, b.monthlycost, b.setup FROM dids AS a, reseller_pricing AS b WHERE a.number = b.note AND b.reseller_id = ".$accountinfo['reseller_id']." AND a.parent_id =".$accountinfo['reseller_id'])->result_array();
+	      $dids_array=$this->db->query("SELECT a.id AS id,a.number as number, b.monthlycost, b.setup FROM dids AS a, reseller_pricing AS b WHERE a.number = b.note AND b.reseller_id = ".$accountinfo['reseller_id']." AND a.accountid='0' AND a.parent_id =".$accountinfo['reseller_id'])->result_array();
             }else{
               $this->db->select('id,monthlycost,setup,number');
               $this->db->where('accountid',0);
