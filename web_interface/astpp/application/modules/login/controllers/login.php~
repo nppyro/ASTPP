@@ -305,7 +305,7 @@ class Login extends MX_Controller {
 				'after_balance'=>$account_data['balance']+$balance_amt,
 			   );
 		          $this->db->insert("invoice_details", $details_insert); 
-	          	//  $this->db_model->update_balance($balance_amt,$account_data["id"],"credit");  			         
+	          	  $this->db_model->update_balance($balance_amt,$account_data["id"],"credit");  			         
 			}
 		      }
 		}

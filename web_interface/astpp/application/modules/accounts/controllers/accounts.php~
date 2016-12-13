@@ -1380,7 +1380,7 @@ class Accounts extends MX_Controller {
 			 $custom_array=$post_array;
 			foreach($reseller_arr as $key=>$reseller_id){
 			  $custom_array['id']=$reseller_id;
-			  //$response = $this->accounts_model->account_process_payment($custom_array);
+			  $response = $this->accounts_model->account_process_payment($custom_array);
 			  $reseller_info=(array)$this->db->get_where('accounts',array("id"=>$reseller_id))->first_row();
 			  $last_invoice_ID = $this->get_invoice_date("invoiceid",$reseller_info["id"]);
 			  $invoice_id=$this->invoices->invoices->generate_receipt($reseller_info['id'],$custom_array['credit'],$reseller_info,$last_invoice_ID+1,$invoice_prefix,$due_date);
