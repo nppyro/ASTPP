@@ -100,8 +100,9 @@ class Getbalance extends MX_Controller
 					$user_currency_name=$base_currency_name;
 				}
 				// Convert Balance of user in user currency
-				$convert_balance=round(($balance * $user_currency)/$base_currency_rate,2);
-				$convert_balance=sprintf("%.2f", $convert_balance).' '.$user_currency_name;
+                                $decimal_point=$this->common->get_field_name("value", "system", array("name" => 'decimalpoints'));
+                                $convert_balance=number_format(($balance * $user_currency)/$base_currency_rate,$decimal_point);
+                                $convert_balance=$convert_balance.' '.$user_currency_name;
 				echo "Balance : ".$convert_balance;
 			}
 		} else{
