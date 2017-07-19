@@ -343,15 +343,19 @@ xml = freeswitch_xml_header(xml,destination_number,accountcode,maxlength,call_di
 	    local i = 1
 	    local carrier_array = {}
 	    for termination_key,termination_value in pairs(termination_rates) do
-		if ( tonumber(termination_value['cost']) > tonumber(user_rates['cost']) ) then		    
-		    	Logger.notice(termination_value['path']..": "..termination_value['cost'] .." > "..user_rates['cost']..", skipping")  
-		else
+			-------------------------------------------------------------------------------
+			-- IGNORE NEGATIVE COST WHERE ORIG RATE < TERM RATE. ALWAYS TERMINATE CALLS  --
+			-------------------------------------------------------------------------------
+			--		if ( tonumber(termination_value['cost']) > tonumber(user_rates['cost']) ) then		    
+--		    	Logger.notice(termination_value['path']..": "..termination_value['cost'] .." > "..user_rates['cost']..", skipping")  
+--		else
 			Logger.info("=============== Termination Rates Information ===================")
 			Logger.info("ID : "..termination_value['outbound_route_id'])  
 			Logger.info("Code : "..termination_value['pattern'])  
 			Logger.info("Destination : "..termination_value['comment'])  
 			Logger.info("Connectcost : "..termination_value['connectcost'])  
 			Logger.info("Free Seconds : "..termination_value['includedseconds'])  
+			Logger.info("Per Minute Cost: "..termination_value['cost'])  
 			Logger.info("Prefix : "..termination_value['pattern'])      		    
 			Logger.info("Strip : "..termination_value['strip'])      		  
 			Logger.info("Prepend : "..termination_value['prepend'])      		  
@@ -365,7 +369,7 @@ xml = freeswitch_xml_header(xml,destination_number,accountcode,maxlength,call_di
 			Logger.info("========================END OF TERMINATION RATES=======================")
 			carrier_array[i] = termination_value
 			i = i+1
-		end
+--		end
 	    end -- For EACH END HERE
 	    
 		-- If we get any valid carrier rates then build dialplan for outbound call
